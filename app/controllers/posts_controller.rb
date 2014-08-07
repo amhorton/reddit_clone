@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   def show
-    @post = current_user.authored_posts.find(params[:id])
+    @post = Post.find(params[:id])
     render :show
   end
 

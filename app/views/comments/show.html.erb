@@ -1,0 +1,26 @@
+<h1><%= @comment.author.username %>'s comment on <%= @comment.post.title %></h1>
+<h3>Created at <%= @comment.created_at %></h3>
+
+<p><%= @comment.content %></p>
+
+<strong>Create a new nested comment</strong>
+
+<br>
+
+<form action="<%= comments_url %>" method="POST">
+  <input
+    type="hidden"
+    name="comment[parent_comment_id]"
+    value="<%= @comment.id %>">
+
+  <%= render "form" %>
+</form>
+
+<h3>Replies</h3>
+<% if @comment.child_comments.any? %>
+<h3>Comments</h3>
+  <% @comment.child_comments.order(:created_at).reverse.each do |comment| %>
+    <%= render_comment(comment) %>
+    <br>
+  <% end %>
+<% end %>

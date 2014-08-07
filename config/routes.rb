@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :users
 
   resources :subs
-  resources :posts
+  resources :posts do
+    resources :comments, only: [:new]
+  end
+
+  resources :comments, only: [:create, :show]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

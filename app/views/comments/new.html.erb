@@ -1,0 +1,6 @@
+<h1>Create a new comment</h1>
+
+<form action="<%= comments_url %>" method="POST">
+  <input type="hidden" name="comment[post_id]" value="<%= @post_id %>">
+  <%= render "form" %>
+</form>

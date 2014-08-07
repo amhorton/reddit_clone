@@ -25,6 +25,12 @@ class Post < ActiveRecord::Base
     dependent: :destroy
   )
 
+  has_many(
+    :top_level_comments,
+    -> { where(parent_comment_id: nil) },
+    class_name: "Comment"
+  )
+
   validates :title, :author_id, presence: true
   # needs custom validation so you can't do both content and URL
 end

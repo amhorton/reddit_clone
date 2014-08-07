@@ -22,3 +22,15 @@
 <% if @post.author == current_user %>
   <a href="<%= edit_post_url(@post) %>">Edit this post</a>
 <% end %>
+
+<br>
+
+<a href="<%= new_post_comment_url(@post) %>">New comment</a>
+
+<% if @post.comments.any? %>
+<h3>Comments</h3>
+  <% @post.top_level_comments.order(:created_at).reverse.each do |comment| %>
+    <%= render_comment(comment) %>
+    <br>
+  <% end %>
+<% end %>

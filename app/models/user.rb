@@ -10,8 +10,11 @@ class User < ActiveRecord::Base
     class_name: "Post",
     foreign_key: :author_id
   )
-  
+
   has_many(
+    :authored_comments,
+    class_name: "Comment",
+    foreign_key: :author_id
   )
 
   validates :username, :password_digest, presence: true
