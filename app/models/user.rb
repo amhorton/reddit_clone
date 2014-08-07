@@ -1,5 +1,15 @@
 class User < ActiveRecord::Base
-  attr_reader :password
+  has_many(
+    :owned_subs,
+    class_name: "Sub",
+    foreign_key: :mod_id
+  )
+
+  has_many(
+    :authored_posts,
+    class_name: "Post",
+    foreign_key: :author_id
+  )
 
   validates :username, :password_digest, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
@@ -15,6 +25,8 @@ class User < ActiveRecord::Base
   def self.generate_token
     SecureRandom.urlsafe_base64
   end
+
+  attr_reader :password
 
   def password=(password)
     @password = password
