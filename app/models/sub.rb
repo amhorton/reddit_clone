@@ -5,7 +5,14 @@ class Sub < ActiveRecord::Base
   )
 
   has_many(
+    :post_subs
+  )
+
+  has_many(
     :posts,
+    through: :post_subs,
+    source: :post,
+    inverse_of: :subs,
     dependent: :destroy
   )
 

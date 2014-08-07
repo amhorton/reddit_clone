@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
     class_name: "Post",
     foreign_key: :author_id
   )
+  
+  has_many(
+  )
 
   validates :username, :password_digest, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }

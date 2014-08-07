@@ -1,0 +1,24 @@
+<h1><%= @post.title %></h1>
+
+
+<% unless @post.subs.empty? %>
+  <h3>Posted in:</h3>
+    <ul>
+      <% @post.subs.each do |sub| %>
+        <li><a href="<%= sub_url(sub) %>"><%= sub.title %></a></li>
+      <% end %>
+    </ul>
+<% end %>
+<h3><%= @post.author.username %> | <%= @post.created_at %></h3>
+
+<% if @post.url %>
+  <p>URL: <%= @post.url %></p>
+<% end %>
+
+<% unless @post.content.empty? %>
+<p>Content: <%= @post.content %><p>
+<% end %>
+
+<% if @post.author == current_user %>
+  <a href="<%= edit_post_url(@post) %>">Edit this post</a>
+<% end %>

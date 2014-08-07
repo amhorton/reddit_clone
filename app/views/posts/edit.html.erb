@@ -1,0 +1,9 @@
+<h1>Edit Post</h1>
+
+<form action="<%= post_url(@post) %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+
+  <%= render "form" %>
+
+  <button>Update post</button>
+</form>

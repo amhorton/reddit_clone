@@ -8,5 +8,23 @@ class Post < ActiveRecord::Base
     class_name: "User"
   )
 
-  validates :title, :sub, :author_id, presence: true
+  has_many(
+    :post_subs,
+    dependent: :destroy
+  )
+
+  has_many(
+    :subs,
+    through: :post_subs,
+    source: :sub,
+    inverse_of: :posts
+  )
+
+  has_many(
+    :comments,
+    dependent: :destroy
+  )
+
+  validates :title, :author_id, presence: true
+  # needs custom validation so you can't do both content and URL
 end
