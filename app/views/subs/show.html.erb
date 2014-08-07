@@ -1,0 +1,9 @@
+<h1>/rc/<%= @sub.title %></h1>
+<p><%= @sub.description %></p>
+
+<ul>
+  <% @sub.posts.each do |post| %>
+    <li><a href="<%= post_url(post) %>"><%= post.title %></a></li>
+  <% end %>
+</ul>
+

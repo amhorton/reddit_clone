@@ -19,13 +19,15 @@ class ApplicationController < ActionController::Base
   end
 
   def sign_out
-    session[:token] = token
+    session[:token] = nil
 
     redirect_to new_session_url
   end
 
   def require_signed_in
-    flash[:notice] = "You gotta be signed in!"
-    redirect_to new_session_url unless signed_in?
+    unless signed_in?
+      flash[:notice] = "You gotta be signed in!"
+      redirect_to new_session_url
+    end
   end
 end

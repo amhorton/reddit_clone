@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   resource :session, except: [:edit, :update, :show]
   resources :users
 
-
-
+  resources :subs
+  resources :posts
 
 
   # The priority is based upon order of creation: first created -> highest priority.

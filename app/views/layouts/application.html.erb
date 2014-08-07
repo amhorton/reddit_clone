@@ -6,8 +6,9 @@
 </head>
 <body>
   <% if signed_in? %>
-    <strong><%= current_user.username %></strong> |
-    <form  action="<%= session_url %>" method="POST">
+    <form action="<%= session_url %>" method="POST">
+      <strong><%= current_user.username %></strong> |
+
       <%= auth_token %>
       <input type="hidden" name="_method" value="delete">
       <button>Sign out</button>

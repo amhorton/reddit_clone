@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       sign_in_user(@user)
       flash[:notice] = "Welcome to Reddit_Clone!"
 
-      redirect_to posts_url
+      redirect_to subs_url
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new

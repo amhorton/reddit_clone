@@ -14,10 +14,14 @@ class SessionsController < ApplicationController
 
     if signed_in?
       flash[:notice] = "Signed in successfully!"
-      redirect_to posts_url
+      redirect_to subs_url
     else
       flash.now[:errors] = ["Invalid username or password."]
       render :new
     end
+  end
+
+  def destroy
+    sign_out
   end
 end
