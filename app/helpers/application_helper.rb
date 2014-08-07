@@ -26,7 +26,7 @@ module ApplicationHelper
 
 
   def render_all_comments(comment_hash)
-    parents = comment_hash[nil].page(1).per(10)
+    parents = comment_hash[nil]
 
     html = ""
     parents.each do |parent|
@@ -40,7 +40,7 @@ module ApplicationHelper
 
   def render_children(parent, comment_hash)
     html = <<-HTML.html_safe
-      <a href="#{comment_url(parent)}" id="c#{parent.id}">
+      <a href="#{comment_url(parent)}" >
         #{ h(parent.author.username) } at #{ h(parent.created_at) }
       </a>
       <br>
