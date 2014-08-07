@@ -21,6 +21,13 @@ class Comment < ActiveRecord::Base
     foreign_key: :parent_comment_id
   )
 
+  def children_by_parent_id
+    hash = Hash.new { |h, k| h[k] = []}
 
+    self.child_comments.each do |comment|
+      hash[comment.parent_comment_id] << comment
+    end
 
+    hash
+  end
 end

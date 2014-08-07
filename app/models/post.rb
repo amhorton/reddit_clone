@@ -33,4 +33,14 @@ class Post < ActiveRecord::Base
 
   validates :title, :author_id, presence: true
   # needs custom validation so you can't do both content and URL
+
+  def comments_by_parent_id
+    hash = Hash.new { |h, k| h[k] = []}
+
+    self.comments.each do |comment|
+      hash[comment.parent_comment_id] << comment
+    end
+
+    hash
+  end
 end

@@ -30,10 +30,6 @@
 <% if @post.comments.any? %>
 <h3>Comments</h3>
   <ul>
-    <% @post.top_level_comments.order(:created_at).reverse.each do |comment| %>
-    <li>
-      <%= render_comment(comment) %>
-    </li>
-    <% end %>
+    <%= render_all_comments(@comments_by_parent_id) %>
   </ul>
 <% end %>
