@@ -1,4 +1,6 @@
 class Comment < ActiveRecord::Base
+  include Votable
+
   validates :author, :post_id, presence: true
 
   belongs_to(
@@ -24,7 +26,7 @@ class Comment < ActiveRecord::Base
   def children_by_parent_id
     hash = Hash.new { |h, k| h[k] = []}
 
-    self.child_comments.each do |comment|
+    self.child_comments.includes(:votes).each do |comment|
       hash[comment.parent_comment_id] << comment
     end
 

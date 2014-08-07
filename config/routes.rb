@@ -9,6 +9,17 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:create, :show]
 
+  post '/comments/:comment_id/downvote' => 'votes#comment_downvote',
+    as: 'comment_downvote'
+
+  post '/comments/:comment_id/upvote' => 'votes#comment_upvote',
+    as: 'comment_upvote'
+
+  post '/posts/:post_id/downvote' => 'votes#post_downvote',
+    as: 'post_downvote'
+
+  post '/posts/:post_id/upvote' => 'votes#post_upvote',
+    as: 'post_upvote'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

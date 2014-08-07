@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
 
 
   def show
-    @comment = Comment.find(params[:id])
+    @comment = Comment.includes(:votes).find(params[:id])
     @children_by_parent_id = @comment.children_by_parent_id
     render :show
   end

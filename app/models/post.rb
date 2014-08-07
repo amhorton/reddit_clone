@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  include Votable
+
   belongs_to(
     :sub
   )
@@ -37,7 +39,7 @@ class Post < ActiveRecord::Base
   def comments_by_parent_id
     hash = Hash.new { |h, k| h[k] = []}
 
-    self.comments.each do |comment|
+    self.comments.includes(:votes).each do |comment|
       hash[comment.parent_comment_id] << comment
     end
 
